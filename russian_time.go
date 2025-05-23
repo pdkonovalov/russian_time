@@ -269,6 +269,26 @@ func WeekDay(t *time.Time) string {
 	return ""
 }
 
+func WeekDayShort(t *time.Time) string {
+	switch t.Weekday() {
+	case time.Monday:
+		return "Пн"
+	case time.Tuesday:
+		return "Вт"
+	case time.Wednesday:
+		return "Ср"
+	case time.Thursday:
+		return "Чт"
+	case time.Friday:
+		return "Пт"
+	case time.Saturday:
+		return "Сб"
+	case time.Sunday:
+		return "Вс"
+	}
+	return ""
+}
+
 func diff(a, b time.Time) (year, month, day, hour, min, sec int) {
 	if a.Location() != b.Location() {
 		b = b.In(a.Location())
