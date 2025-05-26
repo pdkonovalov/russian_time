@@ -205,6 +205,17 @@ func TimeContext(t *time.Time, c RCase) string {
 	}
 }
 
+// time.Now() = 02.01.2006 15:04
+//
+// IsYesterday(01.01.2006 13:00) = true
+//
+// IsYesterday(02.01.2006 13:00) = false
+func IsYesterday(t *time.Time) bool {
+	y, m, d := t.Date()
+	yy, ym, yd := time.Now().Add(-24 * time.Hour).Date()
+	return y == yy && m == ym && d == yd
+}
+
 // 1 день, 2 дня, ... , 1 месяц, 2 месяца, ... , 1 год, 2 года, ...
 func RoundDurationByDayToMonthToYear(start, end *time.Time) string {
 	if start == nil || end == nil {
